@@ -1,0 +1,24 @@
+PPMZ CLOUD DEPLOYMENT — v6
+
+Recommended first deployment: Render Web Service with a persistent disk.
+
+1. Create a Render account.
+2. Create a new Web Service from this project/repository.
+3. Build command: npm install
+4. Start command: npm start
+5. Runtime: Node.
+6. Add environment variables:
+   NODE_ENV=production
+   PPMZ_ADMIN_USERNAME=<choose a username>
+   PPMZ_ADMIN_PASSWORD=<long unique password>
+7. Attach a persistent disk mounted at /opt/render/project/src/data.
+8. Deploy.
+9. Open the generated HTTPS URL.
+10. Test /health and then sign in as Central Secretariat.
+
+IMPORTANT:
+- Do not publish users.json, records.json, pending.json, or audit.json.
+- Keep the generated HTTPS URL private until access controls are tested.
+- Back up the persistent data regularly.
+- For larger organizational scale, migrate JSON persistence to PostgreSQL and document/object storage.
+- The first administrator is created only when the users file is empty.

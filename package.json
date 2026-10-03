@@ -1,0 +1,9 @@
+{
+  "name": "ppmz-digital-platform",
+  "version": "6.0.0",
+  "private": true,
+  "description": "PPMZ secure organizational digital platform",
+  "main": "server.js",
+  "scripts": {"start": "node server.js"},
+  "engines": {"node": ">=18"}
+}
