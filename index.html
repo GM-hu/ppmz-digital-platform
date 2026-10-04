@@ -11,89 +11,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#032B24">
 <title>PPMZ Digital Platform</title>
-/* PPMZ Organizational Directory */
-.directory-box{
-  background:#fff;
-  border:1px solid #d4af37;
-  border-radius:14px;
-  padding:16px;
-  margin:12px 0;
-}
-.directory-box h3{
-  margin:0 0 12px;
-  color:#084635;
-}
-.directory-grid{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:10px;
-}
-.directory-btn{
-  padding:13px 8px;
-  border:1px solid #d4af37;
-  border-radius:10px;
-  background:#f8f8f8;
-  color:#084635;
-  font-weight:600;
-  cursor:pointer;
-}
-.directory-btn:active{
-  transform:scale(.98);
-}
-.directory-search{
-  width:100%;
-  box-sizing:border-box;
-  padding:12px;
-  border:1px solid #ccc;
-  border-radius:9px;
-  margin:10px 0;
-}
-.directory-person{
-  padding:12px;
-  margin:8px 0;
-  border-left:4px solid #d4af37;
-  background:#f8f8f8;
-  border-radius:8px;
-}
-@media(max-width:500px){
-  .directory-grid{grid-template-columns:1fr 1fr;}
-}
+
   <style>
 :root{
   --midnight:#032B24; --green:#064635; --emerald:#0A5C46;
   --gold:#D4AF37; --champagne:#E6C766; --ivory:#F7F3E8;
   --white:#fff; --text:#1B1B1B; --muted:#6F6A5F; --line:#e7dfc9;
 }
-*{box-sizing:border-box} <!-- PPMZ Organizational Directory -->
-<section id="organizational-directory" style="display:none;">
-  <div class="directory-box">
-    <h3>🇵🇰 PPMZ Organizational Directory</h3>
-
-    <input
-      class="directory-search"
-      type="text"
-      id="directorySearch"
-      placeholder="Search office bearer..."
-      oninput="searchDirectory()"
-    >
-
-    <div class="directory-grid">
-      <button class="directory-btn" onclick="showDirectory('Central Team')">Central Team</button>
-      <button class="directory-btn" onclick="showDirectory('Wings')">Wings</button>
-      <button class="directory-btn" onclick="showDirectory('Province')">Province</button>
-      <button class="directory-btn" onclick="showDirectory('Division')">Division</button>
-      <button class="directory-btn" onclick="showDirectory('District')">District</button>
-      <button class="directory-btn" onclick="showDirectory('Taluka / Tehsil')">Taluka / Tehsil</button>
-      <button class="directory-btn" onclick="showDirectory('City')">City</button>
-    </div>
-
-    <div id="directoryResults" style="margin-top:15px;">
-      <p style="text-align:center;opacity:.7;">
-        Select an organizational category.
-      </p>
-    </div>
-  </div>
-</section>
+*{box-sizing:border-box}
 
 <script>
 const ppmzDirectory = [];
@@ -162,6 +87,7 @@ footer{position:sticky;bottom:0;background:#fffdf8;border-top:1px solid var(--li
 @media(max-width:380px){.grid{grid-template-columns:repeat(2,1fr)}.brand h1{font-size:13px}}
 
 label{display:block;font-size:11px;font-weight:700;color:var(--green);margin:10px 0 5px}input,select,textarea{width:100%;padding:11px;border:1px solid var(--line);border-radius:10px;background:#fff;font:inherit;font-size:13px}textarea{resize:vertical}.modal{position:fixed;inset:0;background:#0008;z-index:50;display:grid;place-items:center;padding:18px}.login-card{width:min(390px,100%);background:var(--ivory);border:2px solid var(--gold);border-radius:20px;padding:22px;box-shadow:0 20px 60px #0008}.modal.hide{display:none!important}
+.directory-box{background:#fff;border:1px solid #d4af37;border-radius:14px;padding:16px;margin:12px 0}.directory-box h3{margin:0 0 12px;color:#084635}.directory-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.directory-btn{padding:13px 8px;border:1px solid #d4af37;border-radius:10px;background:#f8f8f8;color:#084635;font-weight:600;cursor:pointer}.directory-btn:active{transform:scale(.98)}.directory-search{width:100%;box-sizing:border-box;padding:12px;border:1px solid #ccc;border-radius:9px;margin:10px 0}.directory-person{padding:12px;margin:8px 0;border-left:4px solid #d4af37;background:#f8f8f8;border-radius:8px}@media(max-width:500px){.directory-grid{grid-template-columns:1fr 1fr}}
 </style>
 </head>
 <body>
@@ -228,6 +154,85 @@ label{display:block;font-size:11px;font-weight:700;color:var(--green);margin:10p
   <div class="nav active" onclick="show('home')"><i>⌂</i>Home</div><div class="nav" onclick="show('profile')"><i>♙</i>Profile</div><div class="nav" onclick="show('notifications')"><i><svg viewBox="0 0 24 24" width="25" height="25" aria-label="Official Notifications"><path d="M18 9a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9M10 21h4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><circle cx="18.2" cy="5.8" r="2.4" fill="var(--gold)" stroke="var(--midnight)" stroke-width="1"/></svg></i>Notifications</div><div class="nav" onclick="show('verify')"><i>⌕</i>Search</div><div class="nav" onclick="show('teams')"><i>☷</i>More</div>
 </footer>
 </div>
+<!-- PPMZ Organizational Directory -->
+<section id="organizational-directory" class="view">
+  <div class="directory-box">
+    <h3>🇵🇰 PPMZ Organizational Directory</h3>
+
+    <input class="directory-search"
+      type="text"
+      id="directorySearch"
+      placeholder="Search office bearer..."
+      oninput="searchDirectory()">
+
+    <div class="directory-grid">
+      <button class="directory-btn" onclick="showDirectory('Central Team')">Central Team</button>
+      <button class="directory-btn" onclick="showDirectory('Wings')">Wings</button>
+      <button class="directory-btn" onclick="showDirectory('Province')">Province</button>
+      <button class="directory-btn" onclick="showDirectory('Division')">Division</button>
+      <button class="directory-btn" onclick="showDirectory('District')">District</button>
+      <button class="directory-btn" onclick="showDirectory('Taluka / Tehsil')">Taluka / Tehsil</button>
+      <button class="directory-btn" onclick="showDirectory('City')">City</button>
+    </div>
+
+    <div id="directoryResults" style="margin-top:15px;">
+      <p style="text-align:center;opacity:.7;">
+        Select an organizational category.
+      </p>
+    </div>
+  </div>
+</section>
+
+<script>
+const ppmzDirectory = [];
+
+function showDirectory(category){
+  const results = document.getElementById("directoryResults");
+  const search = document.getElementById("directorySearch");
+
+  if(search) search.value = "";
+
+  if(ppmzDirectory.length === 0){
+    results.innerHTML =
+      '<p style="text-align:center;opacity:.7;">No office-bearer records added yet.</p>';
+    return;
+  }
+
+  renderDirectory(
+    ppmzDirectory.filter(person => person.category === category)
+  );
+}
+
+function searchDirectory(){
+  const query = document.getElementById("directorySearch").value.toLowerCase();
+
+  renderDirectory(
+    ppmzDirectory.filter(person =>
+      Object.values(person).join(" ").toLowerCase().includes(query)
+    )
+  );
+}
+
+function renderDirectory(list){
+  const results = document.getElementById("directoryResults");
+
+  if(list.length === 0){
+    results.innerHTML =
+      '<p style="text-align:center;opacity:.7;">No matching records found.</p>';
+    return;
+  }
+
+  results.innerHTML = list.map(person => `
+    <div class="directory-person">
+      <strong>${person.name}</strong><br>
+      ${person.designation || ""}<br>
+      ${person.category || ""}<br>
+      ${person.province || ""}
+    </div>
+  `).join("");
+}
+<script>
+  
 <script>
 let CURRENT_USER=null;
 const api=async (url,options={})=>{const r=await fetch(url,{credentials:'same-origin',headers:{'Content-Type':'application/json',...(options.headers||{})},...options});let d={};try{d=await r.json()}catch{}if(!r.ok)throw new Error(d.error||`Request failed (${r.status})`);return d;};
