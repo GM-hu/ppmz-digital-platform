@@ -1,0 +1,10 @@
+{
+  "name": "PPMZ Digital Platform",
+  "short_name": "PPMZ",
+  "description": "Official Digital Platform of Pakistan Patriotic Movement Zindabad",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#084635",
+  "theme_color": "#084635",
+  "orientation": "portrait"
+}
