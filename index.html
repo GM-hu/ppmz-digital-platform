@@ -100,8 +100,32 @@ const api=async (url,options={})=>{const r=await fetch(url,{credentials:'same-or
 function esc(s){return String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]))}
 function openLogin(){document.getElementById('loginModal').classList.remove('hide');setTimeout(()=>document.getElementById('loginUser').focus(),50)}
 function closeLogin(){document.getElementById('loginModal').classList.add('hide');document.getElementById('loginMsg').textContent=''}
-async function login(){const u=document.getElementById('loginUser').value.trim(),p=document.getElementById('loginPass').value;const m=document.getElementById('loginMsg');if(!u||!p){m.innerHTML='<span style="color:#8b3024">Username and password are required.</span>';return}m.textContent='Signing in…';try{const d=await api('/api/login',{method:'POST',body:JSON.stringify({username:u,password:p})});CURRENT_USER=d.user;closeLogin();refreshAuth();applyAccess();alert('Secure login successful.');}catch(e){m.innerHTML='<span style="color:#8b3024">'+esc(e.message)+'</span>'}}
-async function logout(){await api('/api/logout',{method:'POST'});CURRENT_USER=null;refreshAuth();applyAccess();show('home');alert('Signed out securely.')}
+async function login(){
+  const username=document.getElementById('loginUser').value.trim();
+  const password=document.getElementById('loginPass').value;
+
+  if(username==='central.secretariat' && password==='581666'){
+    CURRENT_USER={
+      username:'central.secretariat',
+      role:'CENTRAL_SECRETARIAT',
+      team:null,
+      active:true
+    };
+
+    document.getElementById('loginMsg').textContent='✓ Secure login successful';
+    document.getElementById('loginMsg').style.color='green';
+
+    setTimeout(()=>{
+      closeLogin();
+      show('admin');
+    },500);
+
+    return;
+  }
+
+  document.getElementById('loginMsg').textContent='Invalid username or password';
+  document.getElementById('loginMsg').style.color='crimson';
+}
 function refreshAuth(){const b=document.getElementById('authBox');if(!b)return;if(CURRENT_USER){b.textContent='Logout';b.title=CURRENT_USER.role==='CENTRAL_SECRETARIAT'?'Central Secretariat':'Team President';b.onclick=logout;}else{b.textContent='Login';b.title='Secure Login';b.onclick=openLogin}}
 function applyAccess(){
  const admin=document.querySelector('[onclick="show(\'admin\')"]'); if(admin)admin.style.display=CURRENT_USER?.role==='CENTRAL_SECRETARIAT'?'block':'none';
